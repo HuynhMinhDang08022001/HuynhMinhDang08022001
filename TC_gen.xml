@@ -1,0 +1,359 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testmodule title="Reflash full test" version="1.0">
+	<variants>
+		<variant name="Automated">REFLASHAutomated Testcase</variant>
+	</variants>
+	<testgroup title="REFLASHAutomated Testcase">
+		<externalref type="doors" owner="TAE - DOORS extension" title="ID_2" />
+		<testgroup title="Base SW to Latest SW M3">
+			<externalref type="doors" owner="TAE - DOORS extension" title="ID_3" />
+			<testgroup title="Flash Base SW via UART">
+				<externalref type="doors" owner="TAE - DOORS extension" title="ID_4" />
+				<testgroup title="Flash SW">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_5" />
+				</testgroup>
+				<testgroup title="Variant and Software  Identification">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_7" />
+					<testgroup title="Select_and_check_variant">
+						<externalref type="doors" owner="TAE - DOORS extension" title="ID_8" />
+						<testcase title="1- Tester Present is ON" ident="-">
+							<set title="EnvTesterPresentOnOff">
+								<envvar name="EnvTesterPresentOnOff">1</envvar>
+							</set>
+							<wait time="0" title="wait" />
+						</testcase>
+						<capltestcase name="RequestResponse" title="2- Change to Extended session with Service 0x10 03" ident="-">
+							<caplparam name="Request" type="string">1003</caplparam>
+							<caplparam name="Response" type="string">5003.*</caplparam>
+							<caplparam name="CompareMode" type="string">Regexp</caplparam>
+						</capltestcase>
+						<testcase title="3- Security unlock ON" ident="-">
+							<set title="EnvLogInLevel1_1">
+								<envvar name="EnvLogInLevel1_1">0</envvar>
+							</set>
+							<wait time="0" title="wait" />
+						</testcase>
+						<testcase title="4- wait" ident="-">
+							<wait time="1000" title="wait" />
+						</testcase>
+						<testcase title="5- Security unlock OFF" ident="-">
+							<set title="EnvLogInLevel1_1">
+								<envvar name="EnvLogInLevel1_1">0</envvar>
+							</set>
+							<wait time="0" title="wait" />
+						</testcase>
+						<capltestcase name="RequestResponse" title="6- Select variant" ident="-">
+							<caplparam name="Request" type="string">2e014001</caplparam>
+							<caplparam name="Response" type="string">6e014001</caplparam>
+							<caplparam name="CompareMode" type="string">Equal</caplparam>
+						</capltestcase>
+						<capltestcase name="RequestResponse" title="7- Check variant" ident="-">
+							<caplparam name="Request" type="string">22f1f0</caplparam>
+							<caplparam name="Response" type="string">62014001</caplparam>
+							<caplparam name="CompareMode" type="string">Equal</caplparam>
+						</capltestcase>
+					</testgroup>
+					<testgroup title="F194_Supplier Software number">
+						<externalref type="doors" owner="TAE - DOORS extension" title="ID_9" />
+						<capltestcase name="RequestResponse" title="1- Send service 0x22 to the camera for the DID F194 using physical addressing" ident="-">
+							<caplparam name="Request" type="string">22f194</caplparam>
+							<caplparam name="Response" type="string">62f19443443536394943415f424c30335f5634</caplparam>
+							<caplparam name="CompareMode" type="string">Regexp</caplparam>
+						</capltestcase>
+					</testgroup>
+					<testgroup title="F189_ECUSoftwareVersionNumberDataIdentifier">
+						<externalref type="doors" owner="TAE - DOORS extension" title="ID_10" />
+						<capltestcase name="RequestResponse" title="1- Send service 0x22 to the camera for the DID F189 using physical addressing" ident="-">
+							<caplparam name="Request" type="string">22f189</caplparam>
+							<caplparam name="Response" type="string">62f1895357422e322e30.{2}</caplparam>
+							<caplparam name="CompareMode" type="string">Regexp</caplparam>
+						</capltestcase>
+					</testgroup>
+					<testgroup title="F089_ECUHardwareVersionNumberDataIdentifier">
+						<externalref type="doors" owner="TAE - DOORS extension" title="ID_11" />
+						<capltestcase name="RequestResponse" title="1- Send service 0x22 to the camera for the DID F089 using physical addressing" ident="-">
+							<caplparam name="Request" type="string">22f089</caplparam>
+							<caplparam name="Response" type="string">62f0894857432e322e30.{2}</caplparam>
+							<caplparam name="CompareMode" type="string">Regexp</caplparam>
+						</capltestcase>
+					</testgroup>
+					<testgroup title="F187_Part Number">
+						<externalref type="doors" owner="TAE - DOORS extension" title="ID_12" />
+						<capltestcase name="RequestResponse" title="1- Send service 0x22 to the camera for the DID F187 using physical addressing" ident="-">
+							<caplparam name="Request" type="string">22f187</caplparam>
+							<caplparam name="Response" type="string">62f187373931373033302d43523035.{18}</caplparam>
+							<caplparam name="CompareMode" type="string">Regexp</caplparam>
+						</capltestcase>
+					</testgroup>
+					<testgroup title="F188_Software Number">
+						<externalref type="doors" owner="TAE - DOORS extension" title="ID_13" />
+						<capltestcase name="RequestResponse" title="1- Send service 0x22 to the camera for the DID F188 using physical addressing" ident="-">
+							<caplparam name="Request" type="string">22f188</caplparam>
+							<caplparam name="Response" type="string">62f188393231323430312d43523035.{16}</caplparam>
+							<caplparam name="CompareMode" type="string">Regexp</caplparam>
+						</capltestcase>
+					</testgroup>
+					<testgroup title="F170_FBL Version Information">
+						<externalref type="doors" owner="TAE - DOORS extension" title="ID_14" />
+						<testcase title="1- Tester Present is ON" ident="-">
+							<set title="EnvTesterPresentOnOff">
+								<envvar name="EnvTesterPresentOnOff">1</envvar>
+							</set>
+							<wait time="0" title="wait" />
+						</testcase>
+						<capltestcase name="RequestResponse" title="2- Change to Extended session with Service 0x10 03" ident="-">
+							<caplparam name="Request" type="string">1003</caplparam>
+							<caplparam name="Response" type="string">5003.*</caplparam>
+							<caplparam name="CompareMode" type="string">Regexp</caplparam>
+						</capltestcase>
+						<capltestcase name="RequestResponse" title="3- Send service 0x22 to the camera for the DID F170 using physical addressing" ident="-">
+							<caplparam name="Request" type="string">22f170</caplparam>
+							<caplparam name="Response" type="string">62f17056392e30</caplparam>
+							<caplparam name="CompareMode" type="string">Equal</caplparam>
+						</capltestcase>
+						<capltestcase name="RequestResponse" title="4- Change to Programing session with Service 0x10 02" ident="-">
+							<caplparam name="Request" type="string">1002</caplparam>
+							<caplparam name="Response" type="string">5002.*</caplparam>
+							<caplparam name="CompareMode" type="string">Regexp</caplparam>
+						</capltestcase>
+						<capltestcase name="RequestResponse" title="5- Send service 0x22 to the camera for the DID F170 using physical addressing" ident="-">
+							<caplparam name="Request" type="string">22f170</caplparam>
+							<caplparam name="Response" type="string">62f17056392e33</caplparam>
+							<caplparam name="CompareMode" type="string">Equal</caplparam>
+						</capltestcase>
+						<capltestcase name="RequestResponse" title="6- Change to Default session with Service 0x10 01" ident="-">
+							<caplparam name="Request" type="string">1001</caplparam>
+							<caplparam name="Response" type="string">5001.*</caplparam>
+							<caplparam name="CompareMode" type="string">Regexp</caplparam>
+						</capltestcase>
+						<capltestcase name="RequestResponse" title="7- Send service 0x22 to the camera for the DID F170 using physical addressing" ident="-">
+							<caplparam name="Request" type="string">22f170</caplparam>
+							<caplparam name="Response" type="string">62f17056392e33</caplparam>
+							<caplparam name="CompareMode" type="string">Equal</caplparam>
+						</capltestcase>
+						<capltestcase name="RequestResponse" title="8- Change to Extended session with Service 0x10 03" ident="-">
+							<caplparam name="Request" type="string">1003</caplparam>
+							<caplparam name="Response" type="string">5003.*</caplparam>
+							<caplparam name="CompareMode" type="string">Regexp</caplparam>
+						</capltestcase>
+						<capltestcase name="RequestResponse" title="9- Send service 0x22 to the camera for the DID F170 using physical addressing" ident="-">
+							<caplparam name="Request" type="string">22f170</caplparam>
+							<caplparam name="Response" type="string">62f17056392e33</caplparam>
+							<caplparam name="CompareMode" type="string">Equal</caplparam>
+						</capltestcase>
+					</testgroup>
+				</testgroup>
+				<testgroup title="Programming Counter and Programming Attempt Counter">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_15" />
+					<testgroup title="ProgrammingCounter">
+						<externalref type="doors" owner="TAE - DOORS extension" title="ID_16" />
+						<capltestcase name="RequestResponse" title="1- Send service 0x22 to the camera for the DID 0200 using physical addressing" ident="-">
+							<caplparam name="Request" type="string">220200</caplparam>
+							<caplparam name="Response" type="string">620200.{3}0</caplparam>
+							<caplparam name="CompareMode" type="string">Regexp</caplparam>
+						</capltestcase>
+					</testgroup>
+					<testgroup title="ProgrammingAttemptCounter">
+						<externalref type="doors" owner="TAE - DOORS extension" title="ID_17" />
+						<capltestcase name="RequestResponse" title="1- Send service 0x22 to the camera for the DID 0201 using physical addressing" ident="-">
+							<caplparam name="Request" type="string">220201</caplparam>
+							<caplparam name="Response" type="string">620201.{7}0</caplparam>
+							<caplparam name="CompareMode" type="string">Regexp</caplparam>
+						</capltestcase>
+					</testgroup>
+				</testgroup>
+				<testgroup title="DID in RBEOL">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_18" />
+					<testgroup title="F1E0">
+						<externalref type="doors" owner="TAE - DOORS extension" title="ID_19" />
+						<testcase title="1- Access to RBEOL" ident="-">
+							<set title="EnvRBEOL">
+								<envvar name="EnvRBEOL">1</envvar>
+							</set>
+							<wait time="1000" title="wait" />
+							<set title="EnvRBEOL">
+								<envvar name="EnvRBEOL">0</envvar>
+							</set>
+							<wait time="1000" title="wait" />
+						</testcase>
+						<testcase title="2- Unlock RBEOL" ident="-">
+							<set title="Env_MPC3_EOL_unlock">
+								<envvar name="Env_MPC3_EOL_unlock">1</envvar>
+							</set>
+							<wait time="1000" title="wait" />
+							<set title="Env_MPC3_EOL_unlock">
+								<envvar name="Env_MPC3_EOL_unlock">0</envvar>
+							</set>
+							<wait time="1000" title="wait" />
+						</testcase>
+						<testcase title="3- Wait 5s" ident="-">
+							<wait time="5000" title="wait" />
+						</testcase>
+						<capltestcase name="RequestResponse" title="4- Send service 0x22 to the camera for the DID F1E0 using physical addressing" ident="-">
+							<caplparam name="Request" type="string">22f1e0</caplparam>
+							<caplparam name="Response" type="string">62f1e0.{5}3</caplparam>
+							<caplparam name="CompareMode" type="string">Regexp</caplparam>
+						</capltestcase>
+					</testgroup>
+					<testgroup title="F1DD">
+						<externalref type="doors" owner="TAE - DOORS extension" title="ID_20" />
+						<testcase title="1- Access to RBEOL" ident="-">
+							<set title="EnvRBEOL">
+								<envvar name="EnvRBEOL">1</envvar>
+							</set>
+							<wait time="1000" title="wait" />
+							<set title="EnvRBEOL">
+								<envvar name="EnvRBEOL">0</envvar>
+							</set>
+							<wait time="1000" title="wait" />
+						</testcase>
+						<testcase title="2- Unlock RBEOL" ident="-">
+							<set title="Env_MPC3_EOL_unlock">
+								<envvar name="Env_MPC3_EOL_unlock">1</envvar>
+							</set>
+							<wait time="1000" title="wait" />
+							<set title="Env_MPC3_EOL_unlock">
+								<envvar name="Env_MPC3_EOL_unlock">0</envvar>
+							</set>
+							<wait time="1000" title="wait" />
+						</testcase>
+						<testcase title="3- Wait 5s" ident="-">
+							<wait time="5000" title="wait" />
+						</testcase>
+						<capltestcase name="RequestResponse" title="4- Send service 0x22 to the camera for the DID F1dd using physical addressing" ident="-">
+							<caplparam name="Request" type="string">22f1dd</caplparam>
+							<caplparam name="Response" type="string">62f1dd.*</caplparam>
+							<caplparam name="CompareMode" type="string">Regexp</caplparam>
+						</capltestcase>
+					</testgroup>
+				</testgroup>
+			</testgroup>
+			<testgroup title="Re-Flash Latest SW M3 via X-Flash 1st">
+				<externalref type="doors" owner="TAE - DOORS extension" title="ID_23" />
+				<testgroup title="Variant and Software  Identification">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_25" />
+				</testgroup>
+				<testgroup title="Programming Counter and Programming Attempt Counter">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_33" />
+				</testgroup>
+				<testgroup title="DID in RBEOL">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_36" />
+				</testgroup>
+			</testgroup>
+		</testgroup>
+		<testgroup title="Base SW to Latest SW M5">
+			<externalref type="doors" owner="TAE - DOORS extension" title="ID_41" />
+			<testgroup title="Flash Base SW via UART">
+				<externalref type="doors" owner="TAE - DOORS extension" title="ID_42" />
+				<testgroup title="Flash SW">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_43" />
+				</testgroup>
+				<testgroup title="Variant and Software  Identification">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_45" />
+				</testgroup>
+				<testgroup title="Programming Counter and Programming Attempt Counter">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_53" />
+				</testgroup>
+				<testgroup title="DID in RBEOL">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_56" />
+				</testgroup>
+			</testgroup>
+			<testgroup title="Re-Flash Latest SW M5 via X-Flash 1st">
+				<externalref type="doors" owner="TAE - DOORS extension" title="ID_61" />
+				<testgroup title="Variant and Software  Identification">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_63" />
+				</testgroup>
+				<testgroup title="Programming Counter and Programming Attempt Counter">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_71" />
+				</testgroup>
+				<testgroup title="DID in RBEOL">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_74" />
+				</testgroup>
+			</testgroup>
+			<testgroup title="Re-Flash Latest SW M3 via X-Flash 2nd">
+				<externalref type="doors" owner="TAE - DOORS extension" title="ID_79" />
+				<testgroup title="Variant and Software  Identification">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_81" />
+				</testgroup>
+				<testgroup title="Programming Counter and Programming Attempt Counter">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_89" />
+				</testgroup>
+				<testgroup title="DID in RBEOL">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_92" />
+				</testgroup>
+			</testgroup>
+		</testgroup>
+		<testgroup title="Latest SW to Dummy SW M3">
+			<externalref type="doors" owner="TAE - DOORS extension" title="ID_97" />
+			<testgroup title="Flash Latest SW via UART">
+				<externalref type="doors" owner="TAE - DOORS extension" title="ID_98" />
+				<testgroup title="Flash SW">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_99" />
+				</testgroup>
+				<testgroup title="Variant and Software  Identification">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_101" />
+				</testgroup>
+				<testgroup title="Programming Counter and Programming Attempt Counter">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_109" />
+				</testgroup>
+				<testgroup title="DID in RBEOL">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_112" />
+				</testgroup>
+			</testgroup>
+			<testgroup title="Re-Flash Latest SW M3 via X-Flash 1st">
+				<externalref type="doors" owner="TAE - DOORS extension" title="ID_117" />
+				<testgroup title="Variant and Software  Identification">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_119" />
+				</testgroup>
+				<testgroup title="Programming Counter and Programming Attempt Counter">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_127" />
+				</testgroup>
+				<testgroup title="DID in RBEOL">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_130" />
+				</testgroup>
+			</testgroup>
+		</testgroup>
+		<testgroup title="Latest SW to Dummy SW M5">
+			<externalref type="doors" owner="TAE - DOORS extension" title="ID_135" />
+			<testgroup title="Flash latest SW via UART">
+				<externalref type="doors" owner="TAE - DOORS extension" title="ID_136" />
+				<testgroup title="Flash SW">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_137" />
+				</testgroup>
+				<testgroup title="Variant and Software  Identification">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_139" />
+				</testgroup>
+				<testgroup title="Programming Counter and Programming Attempt Counter">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_147" />
+				</testgroup>
+				<testgroup title="DID in RBEOL">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_150" />
+				</testgroup>
+			</testgroup>
+			<testgroup title="Re-Flash Latest SW M5 via X-Flash 1st">
+				<externalref type="doors" owner="TAE - DOORS extension" title="ID_155" />
+				<testgroup title="Variant and Software  Identification">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_157" />
+				</testgroup>
+				<testgroup title="Programming Counter and Programming Attempt Counter">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_165" />
+				</testgroup>
+				<testgroup title="DID in RBEOL">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_168" />
+				</testgroup>
+			</testgroup>
+			<testgroup title="Re-Flash Latest SW M3 via X-Flash 2nd">
+				<externalref type="doors" owner="TAE - DOORS extension" title="ID_173" />
+				<testgroup title="Variant and Software  Identification">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_175" />
+				</testgroup>
+				<testgroup title="Programming Counter and Programming Attempt Counter">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_183" />
+				</testgroup>
+				<testgroup title="DID in RBEOL">
+					<externalref type="doors" owner="TAE - DOORS extension" title="ID_186" />
+				</testgroup>
+			</testgroup>
+		</testgroup>
+	</testgroup>
+</testmodule>
