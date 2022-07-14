@@ -38,6 +38,7 @@ except:
     else:
         print('File created')
 
+
 def create_value_file():
     try:
         fd = os.open("RFvalue.xlsx", os.O_RDWR)
@@ -88,7 +89,8 @@ def create_value_file():
         # ws5.append(['', '', '', '', '', 'Ticket BaseSW'])
         ws5['F2'] = 'Ticket BaseSW'
         cell_header = ws5.cell(2, 6)
-        cell_header.fill = PatternFill(start_color='000066CC', end_color='000066CC', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='000066CC', end_color='000066CC', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
         cell_header.alignment = alignment
@@ -183,27 +185,26 @@ def create_value_file():
             cell_header.font = font_text
             cell_header.alignment = alignment
 
-
         cell_header = ws5.cell(1, 5)
         cell_header.fill = noneFill
         cell_header.border = border
 
         wb5.save("RFvalue.xlsx")
         os.system('TASKKILL /F /IM EXCEL.exe')
-        messagebox.showinfo("COMPLETE", "File RFvalue.xlsx has been created in the same folder tool successfully, Please fill all value")
+        messagebox.showinfo(
+            "COMPLETE", "File RFvalue.xlsx has been created in the same folder tool successfully, Please fill all value")
         print('tao thanh cong')
         # Mo mot file
         # path = "/py/"
         # dirs = os.listdir(path)
-        
+
         # # Lenh de in tat ca file va thu muc
         # for file in dirs:
         #     print(file)
 
 
-
-
 check_DID = 0
+
 
 def DID_baseSW(ws2, wb, id, number1, number2, number3, number4, direct):
     if direct == '':
@@ -218,7 +219,7 @@ def DID_baseSW(ws2, wb, id, number1, number2, number3, number4, direct):
         for col in range(7, 8):
             char = get_column_letter(col)
             baseSW = ws[char + str(row)].value
-    
+
     i = 0
     o = 2
     j = 3
@@ -254,7 +255,7 @@ def DID_baseSW(ws2, wb, id, number1, number2, number3, number4, direct):
             for col in range(4, 5):
                 char = get_column_letter(col)
                 row_list_values_baseSW = ws[char + str(row)].value
-                
+
         id += 1
         # check lenghth byte
         count_hexvalue_baseSW = 0
@@ -278,10 +279,12 @@ def DID_baseSW(ws2, wb, id, number1, number2, number3, number4, direct):
             # print(type(row_list_length_byte_baseSW))
             if str(count_hexvalue_baseSW) < row_list_length_byte_baseSW:
                 # print("Day la do dai byte",row_list_length_byte_baseSW)
-                length_byte = (int(row_list_length_byte_baseSW) - int(count_hexvalue_baseSW)) * 2
+                length_byte = (int(row_list_length_byte_baseSW) -
+                               int(count_hexvalue_baseSW)) * 2
                 # print("byte bi thieu", length_byte)
                 hexvalue_baseSW = hexvalue_baseSW.lower()
-                hexvalue_baseSW = str(hexvalue_baseSW + ".{" + str(length_byte) + "}")
+                hexvalue_baseSW = str(
+                    hexvalue_baseSW + ".{" + str(length_byte) + "}")
             # print("hoan thanh",hexvalue_baseSW)
         if str(row_list_name_baseSW) == "None":
             row_list_name_baseSW = ""
@@ -301,7 +304,7 @@ def DID_latestSW(ws3, wb3, id, number1, number2, number3, number4, direct):
         wb3 = load_workbook('RFvalue.xlsx')
     else:
         wb3 = load_workbook(str(direct))
-        
+
     ws3 = wb3 .active
     ws3 = wb3['RFvalue_latestSW']
     sheet2 = wb3.worksheets[1]
@@ -371,17 +374,17 @@ def DID_latestSW(ws3, wb3, id, number1, number2, number3, number4, direct):
                 # print(count_hexvalue_latestSW)
                 # print(type(row_list_length_byte_latestSW))
                 if str(count_hexvalue_latestSW) < row_list_length_byte_latestSW:
-                    length_byte = (int(row_list_length_byte_latestSW) - int(count_hexvalue_latestSW)) * 2
+                    length_byte = (
+                        int(row_list_length_byte_latestSW) - int(count_hexvalue_latestSW)) * 2
                     hexvalue_latestSW = hexvalue_latestSW.lower()
-                    hexvalue_latestSW = str(hexvalue_latestSW + ".{" + str(length_byte) + "}")
+                    hexvalue_latestSW = str(
+                        hexvalue_latestSW + ".{" + str(length_byte) + "}")
                 # print(hexvalue_latestSW)
             if str(row_list_name_latestSW) == "None":
                 row_list_name_latestSW = ""
             ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' ' + str(row_list_DID_latestSW) + ' ' + str(row_list_name_latestSW), 'To check value of the DID ' + str(row_list_DID_latestSW), '1) Send service 0x22 to the camera for the DID ' +
                         str(row_list_DID_latestSW) + ' using physical addressing', '1) -', '1) RequestResponse(' + '22' + str(row_list_DID_latestSW_lowercase) + ','+'62'+str(row_list_DID_latestSW_lowercase) + str(hexvalue_latestSW) + ', Regexp)', 'Automated Testcase', 'implemented', latestSW, ''])
-            
-            
-            
+
             number4 += 1
             o += 1
             j += 1
@@ -424,9 +427,9 @@ def variant_base_sw(id, number1, number2, number3, number4, tasks):
         ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' Select_and_check_variant', 'To Select and check variant', '1) Tester Present is ON\n2) Change to Extended session with Service 0x10 03\n3) Security unlock ON\n4) wait\n5) Security unlock OFF\n6) wait\n7) Select variant\n8) Check variant', '1) -\n2) -\n3) -\n4) -\n5) -\n6) -\n7) -\n8) -',
                     '1) envvar(EnvTesterPresentOnOff(1;0))\n2) RequestResponse(1003, 5003.*, Regexp)\n3) envvar(EnvLogInLevel1(1;0))\n4) wait(1000)\n5) envvar(EnvLogInLevel1(0;0))\n6) wait(1000)\n7) RequestResponse(2e' + str(row_Variant_BaseSW_lowercase) + ', 6e' + str(row_DID_check_variant_BaseSW_lowercase) + ', Equal)\n8) RequestResponse(22' + str(row_DID_check_variant_BaseSW_lowercase) + ', 62' + str(row_Variant_BaseSW_lowercase) + ', Equal)', 'Automated Testcase', 'implemented', baseSW, ''])
     else:
-        ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' Check_variant (Variant is default)' , 'To check variant', '1) Tester Present is ON\n2) Change to Extended session with Service 0x10 03\n3) Security unlock ON\n4) wait\n5) Security unlock OFF\n6) wait\n7) Check variant', '1) -\n2) -\n3) -\n4) -\n5) -\n6) -\n7) -',
+        ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' Check_variant (Variant is default)', 'To check variant', '1) Tester Present is ON\n2) Change to Extended session with Service 0x10 03\n3) Security unlock ON\n4) wait\n5) Security unlock OFF\n6) wait\n7) Check variant', '1) -\n2) -\n3) -\n4) -\n5) -\n6) -\n7) -',
                     '1) envvar(EnvTesterPresentOnOff(1;0))\n2) RequestResponse(1003, 5003.*, Regexp)\n3) envvar(EnvLogInLevel1(1;0))\n4) wait(1000)\n5) envvar(EnvLogInLevel1(0;0))\n6) wait(1000)\n7) RequestResponse(22' + str(row_DID_check_variant_BaseSW_lowercase) + ', 62.*, Regexp)', 'Automated Testcase', 'implemented', baseSW, ''])
-    
+
     return id
 
 
@@ -456,12 +459,13 @@ def variant_latest_sw(id, number1, number2, number3, number4, tasks):
         for col in range(7, 8):
             char = get_column_letter(col)
             row_DID_check_variant_LatestSW = ws3[char + str(row)].value
-            row_DID_check_variant_LatestSW_lowercase = str(row_DID_check_variant_LatestSW).lower()
+            row_DID_check_variant_LatestSW_lowercase = str(
+                row_DID_check_variant_LatestSW).lower()
             # print(row_DID_check_variant_LatestSW)
 
     if str(row_Variant_LatestSW) != "None" and str(row_DID_check_variant_LatestSW) != "None":
         ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' Select_and_check_variant', 'To Select and check variant', '1) Tester Present is ON\n2) Change to Extended session with Service 0x10 03\n3) Security unlock ON\n4) wait\n5) Security unlock OFF\n6) wait\n7) Select variant\n8) Check variant', '1) -\n2) -\n3) -\n4) -\n5) -\n6) -\n7) --\n8) -',
-                '1) envvar(EnvTesterPresentOnOff(1;0))\n2) RequestResponse(1003, 5003.*, Regexp)\n3) envvar(EnvLogInLevel1(1;0))\n4) wait(1000)\n5) envvar(EnvLogInLevel1(0;0))\n6) wait(1000)\n7) RequestResponse(2e'+str(row_Variant_LatestSW_lowercase) + ', 6e'+str(row_DID_check_variant_LatestSW_lowercase) + ', Equal)\n8) RequestResponse(22' + str(row_DID_check_variant_LatestSW_lowercase) + ', 62' + str(row_Variant_LatestSW_lowercase) + ', Equal)', 'Automated Testcase', 'implemented', latestSW, ''])
+                    '1) envvar(EnvTesterPresentOnOff(1;0))\n2) RequestResponse(1003, 5003.*, Regexp)\n3) envvar(EnvLogInLevel1(1;0))\n4) wait(1000)\n5) envvar(EnvLogInLevel1(0;0))\n6) wait(1000)\n7) RequestResponse(2e'+str(row_Variant_LatestSW_lowercase) + ', 6e'+str(row_DID_check_variant_LatestSW_lowercase) + ', Equal)\n8) RequestResponse(22' + str(row_DID_check_variant_LatestSW_lowercase) + ', 62' + str(row_Variant_LatestSW_lowercase) + ', Equal)', 'Automated Testcase', 'implemented', latestSW, ''])
     else:
         ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' Check_variant (Variant is default)', 'To check variant', '1) Tester Present is ON\n2) Change to Extended session with Service 0x10 03\n3) Security unlock ON\n4) wait\n5) Security unlock OFF\n6) wait\n7) Check variant', '1) -\n2) -\n3) -\n4) -\n5) -\n6) --\n7) -',
                     '1) envvar(EnvTesterPresentOnOff(1;0))\n2) RequestResponse(1003, 5003.*, Regexp)\n3) envvar(EnvLogInLevel1(1;0))\n4) wait(1000)\n5) envvar(EnvLogInLevel1(0;0))\n6) wait\n7) RequestResponse(22' + str(row_DID_check_variant_LatestSW_lowercase) + ', 62.*, Regexp)', 'Automated Testcase', 'implemented', latestSW, ''])
@@ -490,7 +494,7 @@ def run_program():
     sheet = wb.worksheets[0]
     row_count = sheet.max_row
     row_count2 = sheet2.max_row
-    tasks = row_count2 + row_count + 192
+    tasks = row_count2 + row_count + 184
     for row in range(1, 2):
         for col in range(7, 8):
             char = get_column_letter(col)
@@ -508,33 +512,39 @@ def run_program():
         for col in range(7, 8):
             char = get_column_letter(col)
             ticket_latestSW = ws3[char + str(row)].value
-    
+
     # script begin
     id = 2
     number1 = 1
     number2 = 1
     number3 = 1
     number4 = 1
-    border = Border(left=Side(border_style='thin', color='000000'),right = Side(border_style='thin', color='000000'),top = Side(border_style='thin', color='000000'),bottom = Side(border_style='thin', color='000000'))
-    font_text_header = Font(name="Calibri", size=13, color='00FFFFFF', bold=True)
+    border = Border(left=Side(border_style='thin', color='000000'), right=Side(border_style='thin', color='000000'), top=Side(
+        border_style='thin', color='000000'), bottom=Side(border_style='thin', color='000000'))
+    font_text_header = Font(name="Calibri", size=13,
+                            color='00FFFFFF', bold=True)
     font_text = Font(name="Calibri", size=11, color='00000000', bold=False)
     alignment = Alignment(horizontal='center', vertical='center')
-    ws2.append(['ID', 'XXX Component',  'Test Description', 'Test Steps',  'Test Response','Teststep keywords', 'ObjectType', 'TestStatus', 'Project', 'TestResult'])
+    ws2.append(['ID', 'XXX Component',  'Test Description', 'Test Steps',  'Test Response',
+                'Teststep keywords', 'ObjectType', 'TestStatus', 'Project', 'TestResult'])
     for col in range(1, 11):
-            cell_header = ws2.cell(1, col)
-            # used hex code for red color
-            cell_header.fill = PatternFill(start_color='000066CC', end_color='000066CC', fill_type="solid")
-            cell_header.border = border
-            cell_header.font = font_text_header
-            # cell_header.alignment = alignment
-    ws2.append(['ID_'+str(id),  '1 REFFLASH', '', '', '', '', 'Test group', '', '', ''])
+        cell_header = ws2.cell(1, col)
+        # used hex code for red color
+        cell_header.fill = PatternFill(
+            start_color='000066CC', end_color='000066CC', fill_type="solid")
+        cell_header.border = border
+        cell_header.font = font_text_header
+        # cell_header.alignment = alignment
+    ws2.append(['ID_'+str(id),  '1 REFFLASH', '',
+                '', '', '', 'Test group', '', '', ''])
     for col in range(1, 11):
-            cell_header = ws2.cell(2, col)
-            # used hex code for red color
-            cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
-            cell_header.border = border
-            cell_header.font = font_text
-            # cell_header.alignment = alignment
+        cell_header = ws2.cell(2, col)
+        # used hex code for red color
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.border = border
+        cell_header.font = font_text
+        # cell_header.alignment = alignment
     # ------------------------------------------------------------------------------------------------------
     # BEGIN TEST CASE 1
     # TEST CASE 1 base SW to latestSW M3
@@ -564,10 +574,11 @@ def run_program():
         for col in range(1, 11):
             cell_header = ws2.cell(row, col)
             # used hex code for red color
-            cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+            cell_header.fill = PatternFill(
+                start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
             cell_header.border = border
             cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -582,14 +593,15 @@ def run_program():
     number3 += 1
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + ' Variant and Software  Identification',
                 '', '', '', '', 'Test group', '', '', ''])
-    
+
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -643,14 +655,15 @@ def run_program():
     number3 += 1
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + ' DID in RBEOL',
                 '', '', '', '', 'Test group', '', '', ''])
-    
+
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -701,7 +714,8 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
 
@@ -725,10 +739,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -746,14 +761,15 @@ def run_program():
     number3 += 1
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + ' Programming Counter and Programming Attempt Counter',
                 '', '', '', '', 'Test group', '', '', ''])
-    
+
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -780,10 +796,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -829,7 +846,8 @@ def run_program():
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
     app.update_idletasks()
-    ws2.append(['ID_'+str(id),  '1.' + str(number1) + ' Base SW to Latest SW M5','', '', '', '', 'Test group', '', '', ''])
+    ws2.append(['ID_'+str(id),  '1.' + str(number1) +
+               ' Base SW to Latest SW M5', '', '', '', '', 'Test group', '', '', ''])
 
     # # step 1 FLASH BASE_SW VIA UART script
     id += 1
@@ -877,7 +895,7 @@ def run_program():
             start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -905,10 +923,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -931,14 +950,15 @@ def run_program():
     number3 += 1
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + ' DID in RBEOL',
                 '', '', '', '', 'Test group', '', '', ''])
-    
+
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -989,10 +1009,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1012,10 +1033,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1038,7 +1060,8 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
 
@@ -1064,14 +1087,15 @@ def run_program():
     number3 += 1
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + ' DID in RBEOL',
                 '', '', '', '', 'Test group', '', '', ''])
-    
+
     for col in range(1, 11):
         cell_header = ws2.cell(row, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1120,10 +1144,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1139,14 +1164,15 @@ def run_program():
     number3 += 1
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + ' Variant and Software  Identification',
                 '', '', '', '', 'Test group', '', '', ''])
-    
+
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1169,7 +1195,8 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
 
@@ -1195,14 +1222,15 @@ def run_program():
     number3 += 1
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + ' DID in RBEOL',
                 '', '', '', '', 'Test group', '', '', ''])
-    
+
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1269,7 +1297,7 @@ def run_program():
     app.update_idletasks()
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + ' Flash SW', '',
                 '', '', '', 'Test group', '', '', ''])
-    
+
     for row in range(id - 2, id + 1):
         for col in range(1, 11):
             cell_header = ws2.cell(row, col)
@@ -1278,7 +1306,7 @@ def run_program():
                 start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
             cell_header.border = border
             cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1296,10 +1324,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1322,7 +1351,8 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
 
@@ -1352,10 +1382,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1401,10 +1432,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1420,14 +1452,15 @@ def run_program():
     number3 += 1
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + ' Variant and Software  Identification',
                 '', '', '', '', 'Test group', '', '', ''])
-    
+
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1451,10 +1484,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1481,10 +1515,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1547,7 +1582,7 @@ def run_program():
     app.update_idletasks()
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + ' Flash SW', '',
                 '', '', '', 'Test group', '', '', ''])
-    
+
     for row in range(id - 2, id + 1):
         for col in range(1, 11):
             cell_header = ws2.cell(row, col)
@@ -1556,7 +1591,7 @@ def run_program():
                 start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
             cell_header.border = border
             cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1574,10 +1609,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1601,7 +1637,8 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
 
@@ -1631,10 +1668,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1666,7 +1704,7 @@ def run_program():
 
     # ws2.title = "TC_RF"
     # wb2.save('TC_RF.xlsx')
-    
+
 # --------------------------------------------------------------------------------------------------------
     # Step2 FLASH DUMMY_SW M5 1st VIA Xflash TOOLS
     # # Reflash Dummy SW M5 via xflash tool
@@ -1690,10 +1728,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1713,10 +1752,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1740,10 +1780,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1770,10 +1811,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1826,10 +1868,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1849,10 +1892,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1876,10 +1920,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1906,10 +1951,11 @@ def run_program():
     for col in range(1, 11):
         cell_header = ws2.cell(id, col)
         # used hex code for red color
-        cell_header.fill = PatternFill(start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
+        cell_header.fill = PatternFill(
+            start_color='0000CCFF', end_color='0000CCFF', fill_type="solid")
         cell_header.border = border
         cell_header.font = font_text
-    
+
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1943,21 +1989,22 @@ def run_program():
             cell_header = ws2.cell(row, col)
             # used hex code for red color
             cell_header.border = border
+    # END TEST CASE 4
     
     locate_save = Output_path_text.get()
     ws2.title = "TC_RF"
     print(locate_save)
     if locate_save == '':
-        # print('Ok') 
+        # print('Ok')
         wb2.save('TC_RF.xlsx')
     else:
-        wb2.save(locate_save +'/'+'TC_RF.xlsx')
-        
+        wb2.save(locate_save + '/'+'TC_RF.xlsx')
+
     if locate_save == '':
         wb6 = load_workbook(direct)
     else:
-        wb6 = load_workbook(locate_save +'/'+'TC_RF.xlsx')
-        
+        wb6 = load_workbook(locate_save + '/'+'TC_RF.xlsx')
+
     ws6 = wb6['TC_RF']
     sheet3 = wb6.worksheets[0]
     sheet3.column_dimensions['A'].width = 30
@@ -1970,15 +2017,20 @@ def run_program():
     sheet3.column_dimensions['H'].width = 30
     sheet3.column_dimensions['I'].width = 30
     sheet3.column_dimensions['J'].width = 30
-    
-    if locate_save == '': 
+
+    if locate_save == '':
         wb6.save('TC_RF.xlsx')
     else:
-        wb6.save(locate_save +'/'+'TC_RF.xlsx')
-    # END TEST CASE 4
+        wb6.save(locate_save + '/'+'TC_RF.xlsx')
     
+    print(id)
+    print(percent)
+    print(tasks)
+    print(row_count)
+    print(row_count2)
     run_btn_text.set("DONE")
-    tkinter.messagebox.showinfo("GREAT!", "Test case RFlash tool created successfully")
+    tkinter.messagebox.showinfo(
+        "GREAT!", "Test case RFlash tool created successfully")
 
 
 def start_program():
@@ -2045,25 +2097,27 @@ def start_program():
             char = get_column_letter(col)
             row_list_DID_baseSW = ws[char + str(row)].value
             row_list_DID_latestSW = ws3[char + str(row)].value
-                
+
     if str(row_list_DID_baseSW) == "None":
-        messagebox.showerror("ERROR", "No DID in row 1 at sheet RFvalue_baseSW, Please add DID")
-        
+        messagebox.showerror(
+            "ERROR", "No DID in row 1 at sheet RFvalue_baseSW, Please add DID")
+
     if str(row_list_DID_latestSW) == "None":
-        messagebox.showerror("ERROR", "No DID in row 1 at sheet RFvalue_latestSW, Please add DID")
-        
+        messagebox.showerror(
+            "ERROR", "No DID in row 1 at sheet RFvalue_latestSW, Please add DID")
+
     if baseSW == "":
         messagebox.showerror("ERROR", "BaseSW Name is invalid")
-        
+
     if ticket_baseSW == "":
         messagebox.showerror("ERROR", "ticket_baseSW Name is invalid")
-        
+
     if latestSW == "":
         messagebox.showerror("ERROR", "latestSW Name is invalid")
-        
+
     if ticket_latestSW == "":
         messagebox.showerror("ERROR", "ticket_latestSW Name is invalid")
-        
+
     if baseSW != "" and ticket_baseSW != "" and latestSW != "" and ticket_latestSW != "" and str(row_list_DID_baseSW) != "None" and str(row_list_DID_latestSW) != "None":
         print('run_program')
         run_program()
@@ -2090,6 +2144,7 @@ canvas.pack(fill='both', expand=True)
 canvas.create_image(0, 0, image=logo, anchor='nw')
 
 create_value_file()
+
 
 def open_file():
     browse_input_path_text.set("loading...")
@@ -2134,10 +2189,13 @@ def save_file():
 file_path = ""
 
 # instruction
-instruction = tk.Label(app, text="Welcome to ReFlash tool create by dev Huynh Minh Dang", font=("helvetica", 14))
-instruction_window = canvas.create_window(100, 387, anchor="nw", window=instruction)
+instruction = tk.Label(
+    app, text="Welcome to ReFlash tool create by dev Huynh Minh Dang", font=("helvetica", 14))
+instruction_window = canvas.create_window(
+    100, 387, anchor="nw", window=instruction)
 
-version_app = canvas.create_text(660, 403, text="R1.1.1", font=("helvetica", 12),fill="Black")
+version_app = canvas.create_text(
+    660, 403, text="R1.1.1", font=("helvetica", 12), fill="Black")
 # version_app_window = canvas.create_window(200, 387, anchor="nw", window=version_app)
 
 # Part Base SW
@@ -2207,16 +2265,16 @@ percentLabel_window = canvas.create_window(330, 300, anchor="nw", window=percent
 #     print(e.width)
 #     size  = e.width /10
 #     instruction = tk.Label(app, text="Welcome to ReFlash tool create by dev Huynh Minh Dang", font=("helvetica", int(size)))
-    # instruction_window = canvas.create_window(100, 387, anchor="nw", window=instruction)
-    # run_btn_text = tk.StringVar()
-    # run_btn1 = tk.Button(app, textvariable=run_btn_text,
-    #                     command=start_program, font="Raleway", width=15)
-    # size  = e.width /10
-    # run_btn.config(font=("helvetica", int(size)))
-    # run_btn_text.set("RUN")
+# instruction_window = canvas.create_window(100, 387, anchor="nw", window=instruction)
+# run_btn_text = tk.StringVar()
+# run_btn1 = tk.Button(app, textvariable=run_btn_text,
+#                     command=start_program, font="Raleway", width=15)
+# size  = e.width /10
+# run_btn.config(font=("helvetica", int(size)))
+# run_btn_text.set("RUN")
 
-    # run_btn_window = canvas.create_window(
-    #     270, 190, anchor="nw", window=run_btn)
+# run_btn_window = canvas.create_window(
+#     270, 190, anchor="nw", window=run_btn)
 
 # app.bind('<Configure>', resizer)
 
