@@ -630,7 +630,7 @@ def run_program():
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
     app.update_idletasks()
-    ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' UART flash' + str(baseSW), 'Detail information is mentioned in the ticket: ' +str(ticket_baseSW), 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Manual Testcase', 'implemented', str(baseSW), ''])
+    ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' UART flash' + str(baseSW), 'Detail information is mentioned in the ticket: ' +str(ticket_baseSW), 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'General info', 'implemented', str(baseSW), ''])
 
     id += 1
     bar['value'] += 1
@@ -766,7 +766,7 @@ def run_program():
     number3 = 1
     number4 = 1
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' Xflash '+latestSW, 'Detail information is mentioned in the ticket: '+ticket_latestSW,
-                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Manual Testcase', 'implemented', latestSW, ''])
+                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'General info', 'implemented', latestSW, ''])
 
     id += 1
     bar['value'] += 1
@@ -897,7 +897,7 @@ def run_program():
     percent.set(str((id//tasks)*100)+"%")
     app.update_idletasks()
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' UART flash' + str(baseSW), 'Detail information is mentioned in the ticket: ' + str(ticket_baseSW),
-                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Manual Testcase', 'implemented', str(baseSW), ''])
+                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'General info', 'implemented', str(baseSW), ''])
 
     id += 1
     bar['value'] += 1
@@ -1035,7 +1035,7 @@ def run_program():
     number3 = 1
     number4 = 1
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' Xflash '+latestSW, 'Detail information is mentioned in the ticket: '+ticket_latestSW,
-                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Manual Testcase', 'implemented', latestSW, ''])
+                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'General info', 'implemented', latestSW, ''])
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1170,7 +1170,7 @@ def run_program():
     number3 = 1
     number4 = 1
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' Xflash '+latestSW, 'Detail information is mentioned in the ticket: '+ticket_latestSW,
-                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Manual Testcase', 'implemented', latestSW, ''])
+                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'General info', 'implemented', latestSW, ''])
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1307,7 +1307,7 @@ def run_program():
     percent.set(str((id//tasks)*100)+"%")
     app.update_idletasks()
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' UART flash'+latestSW, 'Detail information is mentioned in the ticket: '+ticket_latestSW,
-                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Manual Testcase', 'implemented', latestSW, ''])
+                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'General info', 'implemented', latestSW, ''])
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1435,7 +1435,7 @@ def run_program():
     number3 = 1
     number4 = 1
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' Xflash '+latestSW, 'Detail information is mentioned in the ticket: '+ticket_latestSW,
-                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Manual Testcase', 'implemented', latestSW, ''])
+                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'General info', 'implemented', latestSW, ''])
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1569,7 +1569,7 @@ def run_program():
     percent.set(str((id//tasks)*100)+"%")
     app.update_idletasks()
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' UART flash'+latestSW, 'Detail information is mentioned in the ticket: '+ticket_latestSW,
-                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Manual Testcase', 'implemented', latestSW, ''])
+                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'General info', 'implemented', latestSW, ''])
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1708,7 +1708,7 @@ def run_program():
     number3 = 1
     number4 = 1
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' Xflash '+latestSW, 'Detail information is mentioned in the ticket: '+ticket_latestSW,
-                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Manual Testcase', 'implemented', latestSW, ''])
+                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'General info', 'implemented', latestSW, ''])
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
@@ -1844,7 +1844,7 @@ def run_program():
     number3 = 1
     number4 = 1
     ws2.append(['ID_'+str(id),  '1.' + str(number1) + '.' + str(number2) + '.' + str(number3) + '.' + str(number4) + ' Xflash '+latestSW, 'Detail information is mentioned in the ticket: '+ticket_latestSW,
-                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Manual Testcase', 'implemented', latestSW, ''])
+                'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'Screen shot the successful flash proccess', 'General info', 'implemented', latestSW, ''])
     id += 1
     bar['value'] += 1
     percent.set(str((id//tasks)*100)+"%")
